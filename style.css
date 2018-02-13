@@ -60,7 +60,7 @@ body {
     rgba(0,0,0,0.15) 4px
   );
   -webkit-background-size: 100% 4px;
-  /** MOZILLA **/
+
   background: -moz-repeating-linear-gradient(
     top,
     transparent 0px,
