@@ -1,38 +1,75 @@
 html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background-color: black;
+  background-image: url('bg.jpg');
+  background-size: 463px 463px;
+}
+
+#outer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 
 #monitor {
-    z-index: 1;
-    background-image: url('8513.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    pointer-events: none;
-}
+  margin: 0 auto;
+  width: 896px;
+  height: 800px;
 
-#box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+  background-image: url('8513@2x.png');
+  background-size: contain;
 }
 
 #box-content {
-    background-color: #008080; /* image: url('water.jpg'); */
-    line-height: 1.4;
-    width: 700px;
-    height: 550px;
-    padding: 20px;
+  z-index: -1;
+  position: relative;
+  top: 130px;
+  left: 120px;
+  width: 620px;
+  height: 450px;
+
+  padding: 20px;
+
+  background-color: #008080; /* image: url('water.jpg'); */
+  line-height: 1.4;
+
+  overflow: scroll;
+}
+
+@keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position: 0 100%; }
+}
+
+#scanlines {
+  z-index: -1;
+  position: relative;
+  top: -360px;
+  height: 500px;
+  margin: 0 40px;
+
+  background: -webkit-repeating-linear-gradient(
+    top,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  -webkit-background-size: 100% 4px;
+  /** MOZILLA **/
+  background: -moz-repeating-linear-gradient(
+    top,
+    transparent 0px,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  -moz-background-size: 100% 4px;
+
+	-webkit-animation: animatedBackground 60s linear infinite;
+	-moz-animation: animatedBackground 60s linear infinite;
 }
