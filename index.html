@@ -76,7 +76,27 @@
     </p>
 
     <h3>gb6</h3>
-    <p>This is a Game Boy emulator for System 6.</p>
+    <p>
+      This is a Game Boy emulator for System 6. I originally targeted an 8 MHz
+      68000 with the intention of running on a Macintosh Plus, but eventually
+      realized I'd only have about six 68000 cycles per Game Boy cycle. This
+      isn't really enough to interpret the CPU instruction, let alone emulate the
+      LCD, sound, and all that other stuff.
+    </p>
+    <p>
+      Rather than write a 68k to LR35902 JIT (which I seriously considered), I
+      decided to stick with my interpreter and increase my minimum target
+      machine to the Macintosh IIci, which came out the same year as the Game
+      Boy and features the ~amazing~ 25 MHz 68030. It's better, but still
+      unplayably slow. I've put this on hold for now, but there are definitely
+      more optimizations I could make, especially in the drawing code. 
+    </p>
+
+    <p>
+      Somebody managed to write a <a href="https://phoinix.sourceforge.io">Game
+        Boy emulator for the Palm III</a>, which features a 16 MHz 68k, so I
+      think this is definitely possible.
+    </p>
 
     <p>
       <a href="images/gb6.png">
@@ -181,7 +201,7 @@
 
     <p>
       I attended the University of Texas at Austin from 2013 to 2016 and
-      graduated with a degree in computer science.
+      graduated with a bachelor's degree in computer science.
     </p>
 
     <div>
