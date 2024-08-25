@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>SNES EPROM Cart - Matt's Website</title>
+    <style type="text/css">
+    <!--
+      body {
+        margin: 0 auto;
+        padding: 16px;
+        max-width: 720px;
+        word-wrap: break-word;
+        line-height: 1.5;
+      }
+
+      h1 img {
+        vertical-align: bottom;
+      }
+    -->
+    </style>
+  </head>
+  <body bgcolor="#ffc0cb" text="#693a5c">
+    <p>^ <a href="../index.html">Home</a></p>
+    <h1><img src="snes.gif"> SNES/SFC EPROM Cart</h1>
+
+    <p><em>for 27C010, 27C020, and 27C040</em></p>
+
+    <p>I recently found a SHVC-1A0N-01 SNES cartridge PCB (originally containing
+    <a href="https://en.wikipedia.org/wiki/Home_Alone_(video_game)"><em>Home
+    Alone</em></a>) in the free area of a
+    Dallas retrocomputing meetup. Since my sister and I are currently working on
+    a SNES game, I thought I'd modify it to accept off-the-shelf EPROMs so I can
+    test our game on real hardware. Here is how you can make this mod too. This
+    tutorial is only applicable to the -01, but I'm sure the other 1A0N PCBs are
+    pretty similar.</p>
+
+    <h2>Front</h2>
+
+    <p><img src="front.png"></p>
+
+    <ol>
+      <li>Desolder the mask ROM and capacitor C2 (if you're using a ZIF
+      socket).</li>
+      <li>Cut traces coming from cartridge pins 42 and 44 - these will go to A16
+      and A18 on your ROM socket. (red lines in image)</li>
+      <li>Sand down the solder mask on the traces you just cut, to expose the
+      copper. It's OK if you sand other traces too, just get that general
+      area. Try not to sand the finish off the cart contacts though, or they'll
+      tarnish more easily. I wasn't very precise and accidentally removed some
+      of the finish.</li>
+      <li>Solder in your IC socket. I used a vintage 40-pin ZIF socket I had laying around,
+      requiring me to cut off pins 1-4 and 36-40 of the socket so it would fit. You can use
+      a regular IC socket as well.</li>
+    </ol>
+
+    <p>It should look something like this:</p>
+
+    <p><img src="front-done.png"></p>
+
+    <h2>Back</h2>
+
+    <p>Now for the back. Here's what we're going to do:</p>
+
+    <p><img src="back.png"></p>
+
+    <ol>
+      <li>Cut the traces going to socket pins 1, 30, and 31. (red lines in
+      image)</li>
+      <li>If you removed C2 earlier, relocate it to the bottom side of the
+      board.</li>
+      <li>Wire socket pin 1 to ground. This is the programming voltage (Vpp) for the
+      EPROM and you can probably just leave it disconnected, but the datasheet
+      said to connect it to ground or 5V, so I did. You can use the ground
+      connection from the nearby capacitor.</li>
+      <li>Wire the via under socket pin 4 to socket pin 30. (address line A17)</li>
+      <li>Wire the via above socket pin 19 to socket pin 24. (output enable)</li>
+      <li>Wire cart pin 42 (A16) to socket pin 2. My board had a hole I could
+      run the wire through, but you could just go around the edge.</li>
+      <li>Wire cart pin 44 (A18) to socket pin 31.</li>
+    </ol>
+
+    <p>Not the neatest thing in the world, but it works:</p>
+
+    <p>
+      <img src="back-done.png">
+    </p>
+
+    <p>Now just burn your software to an EPROM and try it out!</p>
+
+    <p><img src="in-console.jpg"></p>
+    <p><img src="game.jpg"></p>
+
+    <p>It works!</p>
+
+    <h2>Using a 27C080?</h2>
+
+    <p>This should also work with the 27C080, but I don't have any, so I didn't
+    try it out. The 27C080 uses pin 1 as another address line (A19) instead of Vpp.
+    Instead of wiring pin 1 of the socket to ground, wire the via above socket pin 22
+    (this is cartridge pin 45) to pin 1.</p>
+
+    <p><em>Thanks to <a href="https://snescentral.com/pcbboards.php?chip=SHVC-1A0N-01">
+    SNES Central</a> for scans of the unmodified cart. Last updated 24 Aug 2024</em></p>
+  </body>
+</html>
