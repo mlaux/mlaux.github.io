@@ -32,7 +32,31 @@
     a SNES game, I thought I'd modify it to accept off-the-shelf EPROMs so I can
     test our game on real hardware. Here is how you can make this mod too. This
     tutorial is only applicable to the -01, but I'm sure the other 1A0N PCBs are
-    pretty similar.</p>
+    pretty similar. Note that this is a "LoROM" PCB (memory map
+    <code>0x20</code>), so only games using this memory mapping are compatible.</p>
+
+    <h2>Overview</h2>
+
+    <p>The mask ROMs used in SNES cartridges have a slightly different pinout
+    than standard EPROMs. I'm using a 27C040 4Mbx8 EPROM because that's what I
+    had on hand, but this should also work with the 27C010 and 27C020 with no
+    changes, and the 27C080 with one addition. Here are the pin assignments we 
+    need to change:</p>
+
+    <table border="1">
+      <tr>
+        <th>Cartridge pin</th>
+        <th>Function</th>
+        <th>Original mask ROM pin</th>
+        <th>EPROM socket pin</th>
+      </tr>
+      <tr><td>42</td><td>A16/BA1</td><td>24</td><td>2</td></tr>
+      <tr><td>43</td><td>A17/BA2</td><td>1</td><td>30</td></tr>
+      <tr><td>44</td><td>A18/BA3</td><td>2</td><td>31</td></tr>
+      <tr><td>45</td><td>A19/BA4</td><td>30</td><td>1 <strong>(27C080 only, see
+      <a href="#27c080">note</a>)</strong></td></tr>
+      <tr><td>49</td><td>/OE</td><td>31</td><td>24</td></tr>
+    </table>
 
     <h2>Front</h2>
 
@@ -92,7 +116,7 @@
 
     <p>It works!</p>
 
-    <h2>Using a 27C080?</h2>
+    <h2><a name="27c080">Using a 27C080?</a></h2>
 
     <p>This should also work with the 27C080, but I don't have any, so I didn't
     try it out. The 27C080 uses pin 1 as another address line (A19) instead of Vpp.
