@@ -10,16 +10,16 @@ const scoresByPlayer = [];
 
 // Creates this structure for each song:
 // <tr>
-//     <td>Score 1</td>
-//     <td><input id="score-0"></td>
-//     <td>
-//         <select>
-//             <option>+0</option>
-//             <option>HARD CLEAR (+1)</option>
-//             <option>EX HARD CLEAR (+2)</option>
-//             <option>FULL COMBO (+3)</option>
-//         </select>
-//     </td>
+    // <td>Score 1</td>
+    // <td><input id="score-0"></td>
+    // <td>
+    //     <select>
+    //         <option>+0</option>
+    //         <option>HARD CLEAR (+1)</option>
+    //         <option>EX HARD CLEAR (+2)</option>
+    //         <option>FULL COMBO (+3)</option>
+    //     </select>
+    // </td>
 // </tr>
 function addSongRows() {
     const table = document.getElementById('add-player-body');

@@ -4,22 +4,118 @@
         <meta charset="utf-8">
         <title>IIDX Weekly Calculator</title>
         <style>
+            /* General Reset */
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, sans-serif;
+            }
+
+            body {
+                background-color: #f8f9fa;
+                color: #333;
+                padding: 20px;
+                line-height: 1.6;
+            }
+
+            /* Table Styling */
+            table {
+                width: 100%;
+                max-width: 800px;
+                margin: 20px auto;
+                border-collapse: collapse;
+                background-color: #fff;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            table th,
+            table td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+
+            table th {
+                background-color: #28598f;
+                color: white;
+                text-transform: uppercase;
+                font-size: 14px;
+            }
+
+            table tbody tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            /* Input and Form Styling */
+            input, select, button {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+                width: 100%;
+            }
+
+            input:focus, select:focus {
+                border-color: #28598f;
+                outline: none;
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            }
+
+            button {
+                background-color: #28a745;
+                color: white;
+                border: none;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            button:hover {
+                background-color: #218838;
+            }
+
+            /* Add Player Form */
             #add-player-body th {
                 text-align: right;
+                padding-right: 10px;
+                width: 25%;
+            }
+
+            #add-player-body td {
+                width: 25%;
+            }
+
+            /* Center Content */
+            .container {
+                width: 90%;
+                max-width: 800px;
+                margin: 0 auto;
+                text-align: center;
+            }
+
+            h1 {
+                margin-bottom: 20px;
+                font-size: 24px;
+                color: #28598f;
             }
         </style>
     </head>
     <body>
-        <table border="1">
+
+        <div class="container">
+            <h1>IIDX Weekly Calculator</h1>
+        <table>
             <thead>
                 <tr>
-                    <th scope="col">Player</th>
-                    <th scope="col" contenteditable="true">Song 1</th>
-                    <th scope="col">Song 2</th>
-                    <th scope="col">Song 3</th>
-                    <th scope="col">Song 4</th>
-                    <th scope="col">Song 5</th>
-                    <th scope="col">Totals</th>
+                    <th>Player</th>
+                    <th>Song 1</th>
+                    <th>Song 2</th>
+                    <th>Song 3</th>
+                    <th>Song 4</th>
+                    <th>Song 5</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody id="scores-body">
@@ -40,6 +136,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
 
         <script src="calc.js"></script>
     </body>
