@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <!--HTML file auto generated using EmulatorJS codehelper-->
+        <style>
+            body, html {
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="width:512px;height:480px;max-width:100%">
+            <div id="game"></div>
+        </div>
+        <script>
+            EJS_player = "#game";
+            EJS_core = "nes";
+            EJS_gameName = "TRANOID";
+            EJS_color = "#e32400";
+            EJS_startOnLoaded = false;
+            EJS_pathtodata = "https://cdn.emulatorjs.org/stable/data/";
+            EJS_gameUrl = "tranoid.nes";
+            EJS_startButtonName = "Play";
+            EJS_Buttons = {
+                playPause: false,
+                restart: false,
+                mute: true,
+                settings: false,
+                fullscreen: false,
+                saveState: false,
+                loadState: false,
+                screenRecord: false,
+                gamepad: false,
+                cheat: false,
+                volume: true,
+                saveSavFiles: false,
+                loadSavFiles: false,
+                quickSave: false,
+                quickLoad: false,
+                screenshot: false,
+                cacheManager: false,
+                exitEmulation: false
+            };
+            EJS_DEBUG_XX = true;
+            EJS_ready = function() {
+                console.log('ready');
+                const el = Array.from(document.querySelectorAll('span'))
+                    .find(el => el.textContent === 'Context Menu').parentElement;
+                el.style = 'display: none';
+            };
+        </script>
+        <script src="https://cdn.emulatorjs.org/stable/data/loader.js"></script>
+    </body>
+</html>
