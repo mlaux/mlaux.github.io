@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Impulse Tracker Patch - Matthew's Website</title>
+    <style type="text/css">
+    <!--
+      body {
+        margin: 0 auto;
+        padding: 16px;
+        max-width: 720px;
+        word-wrap: break-word;
+        line-height: 1.5;
+      }
+
+      h1 img {
+        vertical-align: bottom;
+      }
+    -->
+    </style>
+  </head>
+  <body bgcolor="#ffc0cb" text="#693a5c">
+    <p>^ <a href="index.html">Home</a></p>
+    <h1>Impulse Tracker Patch</h1>
+    <p>macOS marks the <code>.</code> and <code>..</code> entries in each directory of a FAT filesystem as both <code>directory</code> and <code>hidden</code>. I'm not sure if this is compliant with the FAT spec, but every other OS I've seen has these marked as only <code>directory</code>. <a href="https://github.com/jthlim/impulse-tracker">Impulse Tracker</a> both uses <code>.</code> and <code>..</code> as the only way to navigate "up" in its file browser, and also hides hidden directories. The end result is that if you copy samples over from a Mac and navigate to them, you get stuck in that directory.</p>
+
+    <p>The fix is to patch the attribute mask used in the call to <code>INT 21h, Function 4Eh</code> ("Find First File") to allow hidden directories as well. This patch fixes the sample browser, module browser, and instrument browser. Here it is:</p>
+
+    <pre>--- IT_DISK.ASM	2024-10-20 05:27:26.000000000 -0500
++++ IT_DISK2.ASM	2026-05-29 01:49:46.000000000 -0500
+@@ -1502,8 +1502,8 @@
+
+ D_LoadFileNameUpdateCurrentFile:
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h                 ; Directories
+-                Mov     BX, CX
++                Mov     CX, 12h                 ; Directories
++                Mov     BX, 10h
+                 Call    D_LoadFileNames4
+
+                 Mov     AX, NumEntries
+@@ -5035,7 +5035,7 @@
+                 Pop     DS
+
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h
++                Mov     CX, 12h
+                 Mov     AH, 4Eh
+                 Int     21h
+
+@@ -5142,7 +5142,7 @@
+                 Push    CS
+                 Pop     DS
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h
++                Mov     CX, 12h
+                 Mov     AH, 4Eh
+                 Int     21h
+
+@@ -8853,7 +8853,7 @@
+                 Push    CS
+                 Pop     DS
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h
++                Mov     CX, 12h
+                 Mov     AH, 4Eh
+                 Int     21h
+    </pre>
+
+    <p>If you're using some other DOS software and are seeing weird issues with directories copied from a Mac, this might be why...</p>
+    <h2><a href="IT_DISK.patch">download patch</a></h2>
+    <p><em>Last updated 29 May 2026</em></p>
+  </body>
+</html>

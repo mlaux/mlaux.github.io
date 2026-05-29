@@ -1,0 +1,40 @@
+--- IT_DISK.ASM	2024-10-20 05:27:26.000000000 -0500
++++ IT_DISK2.ASM	2026-05-29 01:49:46.000000000 -0500
+@@ -1502,8 +1502,8 @@
+ 
+ D_LoadFileNameUpdateCurrentFile:
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h                 ; Directories
+-                Mov     BX, CX
++                Mov     CX, 12h                 ; Directories
++                Mov     BX, 10h
+                 Call    D_LoadFileNames4
+ 
+                 Mov     AX, NumEntries
+@@ -5035,7 +5035,7 @@
+                 Pop     DS
+ 
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h
++                Mov     CX, 12h
+                 Mov     AH, 4Eh
+                 Int     21h
+ 
+@@ -5142,7 +5142,7 @@
+                 Push    CS
+                 Pop     DS
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h
++                Mov     CX, 12h
+                 Mov     AH, 4Eh
+                 Int     21h
+ 
+@@ -8853,7 +8853,7 @@
+                 Push    CS
+                 Pop     DS
+                 Mov     DX, Offset AllFilesMask
+-                Mov     CX, 10h
++                Mov     CX, 12h
+                 Mov     AH, 4Eh
+                 Int     21h
+ 
